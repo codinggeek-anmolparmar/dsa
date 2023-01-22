@@ -64,6 +64,24 @@ void takeinput(Node* &root)
   }
 
 }
+Node* minval(Node* root)
+{
+  Node* test=root;
+  while(test->left!=NULL)
+  {
+    test=test->left;
+  }
+  return test;
+}
+Node* maxval(Node* root)
+{
+  Node* test=root;
+  while(test->right!=NULL)
+  {
+    test=test->right;
+  }
+  return test;
+}
 int main()
 {
   Node* root=NULL;
@@ -77,5 +95,8 @@ int main()
   else{
     cout<<"not present";
   }
+  cout<<endl;
+cout<<minval(root)->data<<endl;
+cout<<maxval(root)->data<<endl;
   return 0;
 }
