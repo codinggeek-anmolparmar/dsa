@@ -82,6 +82,62 @@ Node* maxval(Node* root)
   }
   return test;
 }
+Node* delete(Node* root,int val)
+{
+  if(root==NULL)
+  {
+    return root;
+  }
+  if(root->data==val)
+  {
+    //0 child
+  if(root->left==NULL && root->right==NULL)
+{
+  delete root;
+  return NULL;
+}
+
+//1 child
+//LEFT CHILD
+if(root->right==NULL && root->left!=NULL)
+{
+  Node* temp=root->left;
+  delete root;
+  return temp;
+}
+//RIGHT CHILD
+if(root->left==NULL && root->right!=NULL)
+{
+  Node* temp=root->right;
+  delete root;
+  return temp;
+}
+   //2 child
+if(root->left!=NULL && root->right!=NULL)
+{
+  int mini=minval(root->right)->data;
+  root->data=mini;
+  root->right=delete(root->right,mini);
+  return root;
+  
+}
+
+
+
+  }
+  if(val<root->data)
+  {
+    root->left=delete(root->left,val);
+   return root;
+  }
+  if(val>root->data)
+  {
+    root->right=delete(root->right,val);
+    return root;
+
+  }
+  return root;
+}
 int main()
 {
   Node* root=NULL;
